@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg5w77cg8k1fx"]
+
+[sub_resource type="GDScript" id="GDScript_mui2q"]
+script/source = "class_name CardDeck extends CardPile
+
+# Container for all cards in the player's deck. Has methods for shuffling, dealing, searching
+"
+
+[node name="CardDeck" type="Node"]
+script = SubResource("GDScript_mui2q")

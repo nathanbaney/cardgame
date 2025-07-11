@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ub7lcg2m3sga"]
+
+[ext_resource type="Script" uid="uid://bs2cwiw52yu7b" path="res://scenes/rotating_entity.gd" id="1_y7wii"]
+
+[node name="RotatingEntity" type="Node3D"]
+script = ExtResource("1_y7wii")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+pixel_size = 0.04
+billboard = 1
+texture_filter = 0
+animation = &""

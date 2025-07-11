@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bljdhvniu6egk"]
+
+[ext_resource type="PackedScene" uid="uid://ub7lcg2m3sga" path="res://scenes/rotating_entity.tscn" id="1_qhqgy"]
+[ext_resource type="SpriteFrames" uid="uid://d1ledl5mrouvs" path="res://sprites/dummy_idle.res" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cyk6p2bc6cr1k" path="res://scenes/player.gd" id="2_qhqgy"]
+
+[node name="Player" instance=ExtResource("1_qhqgy")]
+script = ExtResource("2_qhqgy")
+
+[node name="AnimatedSprite3D" parent="." index="0"]
+sprite_frames = ExtResource("2_g2els")
+animation = &"0_0"
+
+[node name="Camera3D" type="Camera3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+projection = 1
+size = 10.0
+
+[node name="RotationTimer" type="Timer" parent="." index="2"]
+wait_time = 0.25
+one_shot = true

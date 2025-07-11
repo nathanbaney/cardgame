@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://h3k4p0ug3smy"]
+
+[ext_resource type="PackedScene" uid="uid://ub7lcg2m3sga" path="res://scenes/rotating_entity.tscn" id="1_upkiv"]
+[ext_resource type="Script" uid="uid://bh1wr55ltu7fb" path="res://scenes/test_npc.gd" id="2_a1j51"]
+[ext_resource type="SpriteFrames" uid="uid://d1ledl5mrouvs" path="res://sprites/dummy_idle.res" id="3_5e1og"]
+
+[node name="TestNPC" instance=ExtResource("1_upkiv")]
+script = ExtResource("2_a1j51")
+
+[node name="AnimatedSprite3D" parent="." index="0"]
+sprite_frames = ExtResource("3_5e1og")
+animation = &"0_0"
