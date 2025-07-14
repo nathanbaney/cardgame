@@ -32,6 +32,7 @@ var number_of_mulligans: int = 0
 
 @export var debug: bool = true
 var debug_state_format_1: String = "TURN %d CURRENT_PLAYER %d GAME_STEP %s"
+var debug_state_format_2: String = "PLAYER1 CARD_COUNT %d PLAYER2 CARD_COUNT %d"
 
 func _ready() -> void:
 	current_player = player_list.get(0)
@@ -50,7 +51,9 @@ func init_game() -> void:
 
 func mulligan():
 	print_debug_state()
-	var did_player_mull: bool = await_mulligan_input()
+	#await await_mulligan_input()
+	await %TestCardInputOverlay.get_node("AdvanceStateButton").pressed
+	var did_player_mull: bool = true # await_mulligan_input()
 	if did_player_mull:
 		number_of_mulligans += 1
 		reshuffle_everything()
@@ -73,7 +76,8 @@ func upkeep():
 
 func main_phase():
 	print_debug_state()
-	await_main_phase_input()
+	# await await_main_phase_input()
+	await %TestCardInputOverlay.get_node("AdvanceStateButton").pressed
 	advance_game_step()
 
 func played_card():
@@ -157,6 +161,9 @@ func reshuffle_everything():
 		player.deck.cards.append_array(player.discard_pile.cards)
 		player.deck.cards.append_array(player.play_zone.cards)
 		player.deck.cards.shuffle()
+		player.hand.cards.clear()
+		player.discard_pile.cards.clear()
+		player.play_zone.cards.clear()
 
 func execute_game_step_func():
 	match current_game_step:
@@ -180,3 +187,4 @@ func execute_game_step_func():
 func print_debug_state():
 	if debug:
 		print(debug_state_format_1 % [turn_count, current_player_index, current_game_step])
+		print(debug_state_format_2 % [player_list.get(0).hand.cards.size(), player_list.get(1).hand.cards.size()])
