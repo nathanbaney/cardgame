@@ -90,7 +90,7 @@ func board_phase():
 	print_debug_state()
 	for card in current_player.play_zone.cards:
 		#execute card's effect
-		pass
+		continue
 	advance_game_step()
 
 func end_of_turn():
@@ -182,7 +182,7 @@ func execute_game_step_func():
 		GAME_STEP.BOARD_PHASE:
 			board_phase()
 		GAME_STEP.END_OF_TURN:
-			pass
+			end_of_turn()
 
 func print_debug_state():
 	if debug:
