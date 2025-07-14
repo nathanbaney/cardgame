@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://5npfmetsrfj4"]
+
+[ext_resource type="Script" uid="uid://bbwxqecwpdqwn" path="res://scenes/card_player.gd" id="1_n16lx"]
+[ext_resource type="PackedScene" uid="uid://dxiubp08i78ri" path="res://scenes/decks/test_deck_1.tscn" id="2_tdnkp"]
+[ext_resource type="PackedScene" uid="uid://ck8xj8x5w7nrn" path="res://scenes/decks/empty_deck.tscn" id="3_dw7it"]
+
+[node name="TestPlayer1" type="Node" node_paths=PackedStringArray("deck", "hand", "discard_pile", "play_zone")]
+script = ExtResource("1_n16lx")
+deck = NodePath("TestDeck1")
+hand = NodePath("EmptyDeck")
+discard_pile = NodePath("EmptyDeck")
+play_zone = NodePath("EmptyDeck")
+metadata/_custom_type_script = "uid://bbwxqecwpdqwn"
+
+[node name="TestDeck1" parent="." instance=ExtResource("2_tdnkp")]
+
+[node name="EmptyDeck" parent="." instance=ExtResource("3_dw7it")]

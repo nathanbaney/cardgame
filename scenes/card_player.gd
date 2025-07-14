@@ -6,9 +6,9 @@ class_name CardPlayer extends Node
 @export var life_total: int = 20
 @export var is_human: bool = false
 @export var deck: CardPile
-@export var hand: CardPile
-@export var discard_pile: CardPile
-@export var play_zone: CardPile
+@export var hand: CardPile = CardPile.new()
+@export var discard_pile: CardPile = CardPile.new()
+@export var play_zone: CardPile = CardPile.new()
 
 var is_loser: bool = false
 var draw_per_turn: int = 3

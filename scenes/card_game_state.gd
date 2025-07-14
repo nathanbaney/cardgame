@@ -26,13 +26,22 @@ var tapped_cards: Array[int] = [] #array of indeces corresponding to cards in th
 var played_card_index: int = -1 #card index in the players hand selected for casting
 var current_game_step: GAME_STEP = GAME_STEP.SETUP
 
+var turn_count: int = 1
 var number_of_losers: int = 0
 var number_of_mulligans: int = 0
 
+@export var debug: bool = true
+var debug_state_format_1: String = "TURN %d CURRENT_PLAYER %d GAME_STEP %s"
+
+func _ready() -> void:
+	current_player = player_list.get(0)
+	init_game()
+
 # deal 7 cards to each player
 func init_game() -> void:
+	print_debug_state()
 	for player in player_list:
-		player.hand.cards.append(player.deck.deal_cards(initial_cards_dealt))
+		player.hand.cards.append_array(player.deck.deal_cards(initial_cards_dealt))
 	if number_of_mulligans < max_mulligans:
 		current_game_step = GAME_STEP.MULLIGAN
 	else:
@@ -40,6 +49,7 @@ func init_game() -> void:
 	execute_game_step_func()
 
 func mulligan():
+	print_debug_state()
 	var did_player_mull: bool = await_mulligan_input()
 	if did_player_mull:
 		number_of_mulligans += 1
@@ -51,30 +61,36 @@ func mulligan():
 
 func before_turn():
 	#handle all before-turn effects left-to-right on playzone, hand, whatever
+	print_debug_state()
 	advance_game_step()
 
 func upkeep():
+	print_debug_state()
 	var drawn_cards: Array[Card] = current_player.deck.deal_cards(current_player.draw_per_turn)
 	current_player.change_health(drawn_cards.size() - current_player.draw_per_turn)
 	# handle card-drawn effects?
 	advance_game_step()
 
 func main_phase():
+	print_debug_state()
 	await_main_phase_input()
 	advance_game_step()
 
 func played_card():
 	#resolve whatever effect the played card has
+	print_debug_state()
 	advance_game_step()
 
 func board_phase():
 	#resolve board left-to-right for current player
-	for card in current_player.play_zone:
+	print_debug_state()
+	for card in current_player.play_zone.cards:
 		#execute card's effect
 		pass
 	advance_game_step()
 
 func end_of_turn():
+	print_debug_state()
 	if current_player.hand.cards.size() > max_hand_size:
 		await_discard_input()
 	#resolve all cards with end-of-turn effects left-to-right
@@ -101,6 +117,7 @@ func advance_game_step():
 func set_next_game_step():
 	if current_game_step == GAME_STEP.END_OF_TURN:
 		set_next_player()
+		turn_count += 1
 		current_game_step = GAME_STEP.BEFORE_TURN
 	else:
 		current_game_step += 1
@@ -120,22 +137,25 @@ func declare_draw():
 
 #returns true if player clicked mulligan button, false if not
 func await_mulligan_input() -> bool:
-	# not sure... await ui input?
+	await_test_input()
 	return true
 
 func await_main_phase_input() -> void:
 	#set highlighted cards, targets, whatever
-	pass
+	await_test_input()
 
 func await_discard_input() -> void:
 	#player clicks the needed number of cards to discard
-	pass
+	await_test_input()
+
+func await_test_input():
+	await %TestCardInputOverlay.get_node("AdvanceStateButton").pressed
 
 func reshuffle_everything():
 	for player in player_list:
 		player.deck.cards.append_array(player.hand.cards)
-		player.deck.cards.append(player.discard_pile.cards)
-		player.deck.cards.append(player.play_zone.cards)
+		player.deck.cards.append_array(player.discard_pile.cards)
+		player.deck.cards.append_array(player.play_zone.cards)
 		player.deck.cards.shuffle()
 
 func execute_game_step_func():
@@ -156,4 +176,7 @@ func execute_game_step_func():
 			board_phase()
 		GAME_STEP.END_OF_TURN:
 			pass
-	
+
+func print_debug_state():
+	if debug:
+		print(debug_state_format_1 % [turn_count, current_player_index, current_game_step])
