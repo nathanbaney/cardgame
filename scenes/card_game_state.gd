@@ -15,6 +15,9 @@ class_name CardGameState extends Node
 
 enum GAME_STEP {SETUP, MULLIGAN, BEFORE_TURN, UPKEEP, MAIN_PHASE, PLAYED_CARD, BOARD_PHASE, END_OF_TURN}
 
+signal dealt_damage(player_index: int, damage: int)
+signal drew_card(player_index: int, card: Card)
+
 @export var player_list: Array[CardPlayer]
 var initial_cards_dealt: int = 7
 var max_hand_size: int = 7
@@ -32,17 +35,19 @@ var number_of_mulligans: int = 0
 
 @export var debug: bool = true
 var debug_state_format_1: String = "TURN %d CURRENT_PLAYER %d GAME_STEP %s"
-var debug_state_format_2: String = "PLAYER1 CARD_COUNT %d PLAYER2 CARD_COUNT %d"
+var debug_state_format_2: String = "PLAYER1 CARD_COUNT %d HP %d PLAYER2 CARD_COUNT %d HP %d"
 
 func _ready() -> void:
+	drew_card.connect(%UICardGameRenderer._on_drew_card)
 	current_player = player_list.get(0)
 	init_game()
 
 # deal 7 cards to each player
 func init_game() -> void:
 	print_debug_state()
-	for player in player_list:
-		player.hand.cards.append_array(player.deck.deal_cards(initial_cards_dealt))
+	for player_index in range(player_list.size()):
+		draw_cards(player_index, initial_cards_dealt)
+		#player.hand.cards.append_array(player.deck.deal_cards(initial_cards_dealt))
 	if number_of_mulligans < max_mulligans:
 		current_game_step = GAME_STEP.MULLIGAN
 	else:
@@ -52,7 +57,7 @@ func init_game() -> void:
 func mulligan():
 	print_debug_state()
 	#await await_mulligan_input()
-	await %TestCardInputOverlay.get_node("AdvanceStateButton").pressed
+	await %UICardGameRenderer.get_node("AdvanceStateButton").pressed
 	var did_player_mull: bool = true # await_mulligan_input()
 	if did_player_mull:
 		number_of_mulligans += 1
@@ -77,7 +82,7 @@ func upkeep():
 func main_phase():
 	print_debug_state()
 	# await await_main_phase_input()
-	await %TestCardInputOverlay.get_node("AdvanceStateButton").pressed
+	await %UICardGameRenderer.get_node("AdvanceStateButton").pressed
 	advance_game_step()
 
 func played_card():
@@ -133,10 +138,12 @@ func set_next_player():
 
 func declare_winner():
 	# not sure what thisll do yet... emit a signal to view layer?
+	print("SOMEONE WON!")
 	pass
 
 func declare_draw():
 	#emit a signal or something?
+	print("IT WAS A DRAW!")
 	pass
 
 #returns true if player clicked mulligan button, false if not
@@ -153,7 +160,7 @@ func await_discard_input() -> void:
 	await_test_input()
 
 func await_test_input():
-	await %TestCardInputOverlay.get_node("AdvanceStateButton").pressed
+	await %UICardGameRenderer.get_node("AdvanceStateButton").pressed
 
 func reshuffle_everything():
 	for player in player_list:
@@ -184,7 +191,21 @@ func execute_game_step_func():
 		GAME_STEP.END_OF_TURN:
 			end_of_turn()
 
+func deal_damage(player_index: int, damage: int):
+	player_list.get(player_index).life_total -= damage
+	dealt_damage.emit(player_index, damage)
+
+func draw_cards(player_index: int, number_of_cards: int):
+	for ii in range(number_of_cards):
+		if not player_list.get(player_index).deck.cards.is_empty():
+			var drawn_card: Card = player_list.get(player_index).deck.deal_card()
+			player_list.get(player_index).hand.cards.append(drawn_card)
+			drew_card.emit(player_index, drawn_card)
+		else:
+			deal_damage(player_index, 1)
+	# TODO handle any on-draw effects
+
 func print_debug_state():
 	if debug:
 		print(debug_state_format_1 % [turn_count, current_player_index, current_game_step])
-		print(debug_state_format_2 % [player_list.get(0).hand.cards.size(), player_list.get(1).hand.cards.size()])
+		print(debug_state_format_2 % [player_list.get(0).hand.cards.size(), player_list.get(0).life_total, player_list.get(1).hand.cards.size(), player_list.get(1).life_total])

@@ -11,6 +11,11 @@ func deal_cards(number_of_cards: int) -> Array[Card]:
 			dealt_cards.append(cards.pop_front())
 	return dealt_cards
 
+#should empty deck check be here? or in gamestate?
+func deal_card():
+	if not cards.is_empty():
+		return cards.pop_front()
+
 func shuffle() -> void:
 	cards.shuffle() #consider seeding
 

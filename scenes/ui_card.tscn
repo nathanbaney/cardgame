@@ -10,15 +10,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ho3ey")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 181.0
-offset_bottom = 244.0
-color = Color(1, 0.897703, 0.599719, 1)
-
-[node name="Label" type="Label" parent="ColorRect"]
-top_level = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0

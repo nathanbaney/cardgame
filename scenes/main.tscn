@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca8xb1y3t56oq"]
+[gd_scene load_steps=15 format=3 uid="uid://ca8xb1y3t56oq"]
 
 [ext_resource type="Texture2D" uid="uid://n10k0fvcjf5i" path="res://textures/test_cobble.png" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bljdhvniu6egk" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://e16yhenlgyiv" path="res://scenes/rotation_coordinator.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://h3k4p0ug3smy" path="res://scenes/test_npc.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://chwhfmcexuflq" path="res://scenes/ui_card_game_renderer.gd" id="5_85g3d"]
 [ext_resource type="Script" uid="uid://d3o1mu7f8u1xy" path="res://scenes/card_game_state.gd" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://rcn1ldqyb4tb" path="res://scenes/ui_card_hand.gd" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://bo1drjdiqvrvw" path="res://scenes/players/test_human_player.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://5npfmetsrfj4" path="res://scenes/players/test_player_1.tscn" id="7_tipki"]
 
@@ -56,18 +58,40 @@ metadata/_custom_type_script = "uid://e16yhenlgyiv"
 [node name="TestNPC" parent="." instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82279, 0, 0)
 
-[node name="TestCardInputOverlay" type="Control" parent="."]
+[node name="UICardGameRenderer" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("5_85g3d")
+metadata/_custom_type_script = "uid://chwhfmcexuflq"
 
-[node name="AdvanceStateButton" type="Button" parent="TestCardInputOverlay"]
+[node name="AdvanceStateButton" type="Button" parent="UICardGameRenderer"]
 layout_mode = 0
 offset_right = 311.0
 offset_bottom = 105.0
 text = "Advance state"
+
+[node name="UICardHandPlayer" type="Control" parent="UICardGameRenderer"]
+anchors_preset = 0
+offset_left = 402.0
+offset_top = 700.0
+offset_right = 1563.0
+offset_bottom = 1012.0
+script = ExtResource("5_tipki")
+is_hidden = false
+metadata/_custom_type_script = "uid://rcn1ldqyb4tb"
+
+[node name="UICardHandOpp" type="Control" parent="UICardGameRenderer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 388.0
+offset_top = 59.0
+offset_right = 1549.0
+offset_bottom = 371.0
+script = ExtResource("5_tipki")
+metadata/_custom_type_script = "uid://rcn1ldqyb4tb"
 
 [node name="CardGameState" type="Node" parent="." node_paths=PackedStringArray("player_list")]
 script = ExtResource("5_tbgi4")
