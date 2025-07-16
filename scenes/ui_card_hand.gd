@@ -1,15 +1,14 @@
 class_name UICardHand extends Control
 
-# UI element that has an Array of Cards, which get displayed as an Array of UICards
-
-var cards_in_hand: Array[UICard] = []
-var deck_position: Vector2 = Vector2(1, 1)
 @export var is_hidden: bool = true
+var center_point: Vector2
 
-func draw_card(card: Card) -> void:
-	# make UICard from card, append UICard to cards_in_hand, move UICard from deck to hand area
-	var uicard: UICard = UICard.new()
-	uicard.initialize(card)
-	self.add_child(uicard)
-	cards_in_hand.append(uicard)
-	pass
+
+func _ready() -> void:
+	#center_point = Vector2(self.position.x + (self.size.x / 2), self.position.y + (self.size.y / 2))
+	center_point = Vector2(self.size.x / 2, 0)
+	print("CENTER POINT OF HAND ", center_point)
+
+func add_card(card: UICard) -> void:
+	#card.set_position(center_point)
+	add_child(card)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ca8xb1y3t56oq"]
+[gd_scene load_steps=16 format=3 uid="uid://ca8xb1y3t56oq"]
 
 [ext_resource type="Texture2D" uid="uid://n10k0fvcjf5i" path="res://textures/test_cobble.png" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bljdhvniu6egk" path="res://scenes/player.tscn" id="1_o5qli"]
@@ -25,7 +25,13 @@ albedo_color = Color(1, 0.564706, 0.133333, 1)
 material = SubResource("StandardMaterial3D_o5qli")
 size = Vector3(4, 4, 4)
 
+[sub_resource type="Sky" id="Sky_85g3d"]
+
 [sub_resource type="Environment" id="Environment_o5qli"]
+background_energy_multiplier = 7.02
+sky = SubResource("Sky_85g3d")
+ambient_light_color = Color(0.822481, 0.763441, 0.566739, 1)
+ambient_light_energy = 5.28
 
 [node name="Node3D" type="Node3D"]
 
@@ -74,22 +80,30 @@ offset_bottom = 105.0
 text = "Advance state"
 
 [node name="UICardHandPlayer" type="Control" parent="UICardGameRenderer"]
-anchors_preset = 0
-offset_left = 402.0
-offset_top = 700.0
-offset_right = 1563.0
-offset_bottom = 1012.0
+layout_mode = 1
+anchor_left = 3.525
+anchor_top = 17.225
+anchor_right = 45.025
+anchor_bottom = 25.025
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("5_tipki")
 is_hidden = false
 metadata/_custom_type_script = "uid://rcn1ldqyb4tb"
+metadata/_edit_use_anchors_ = true
 
 [node name="UICardHandOpp" type="Control" parent="UICardGameRenderer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 388.0
-offset_top = 59.0
-offset_right = 1549.0
-offset_bottom = 371.0
+visible = false
+layout_mode = 1
+anchor_left = 24.212
+anchor_top = 5.375
+anchor_right = 24.212
+anchor_bottom = 5.375
+offset_left = -580.48
+offset_top = -156.0
+offset_right = 580.52
+offset_bottom = 156.0
 script = ExtResource("5_tipki")
 metadata/_custom_type_script = "uid://rcn1ldqyb4tb"
 

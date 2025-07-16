@@ -3,7 +3,7 @@ extends RotatingEntity
 var is_moving: bool = false
 var raw_move_vector: Vector2i = Vector2i.ZERO
 var move_vector: Vector2 = Vector2.ZERO
-var move_speed: float = 0.03
+var move_speed: float = 5.0
 
 var is_rotating: bool = false
 var rotation_increment: float = PI / 8 # rads
@@ -14,7 +14,7 @@ var sprite_rotation: int = 0
 
 signal camera_rotate(rotation: int)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if is_rotating:
 		var current_rot: float = snappedf(lerp_angle(new_rot, old_rot, ease($RotationTimer.time_left / $RotationTimer.wait_time, 3.0)), PI / 256)
 		var old_sprite_rot: int = to_sprite_rotation(self.rotation_degrees.y)
@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 	if is_moving:
 		var movement_vector: Vector3 = get_movement_vector()
 		movement_vector = movement_vector.rotated(Vector3.UP, move_to_angle())
-		self.global_translate(movement_vector * move_speed)
+		self.global_translate(movement_vector * move_speed * delta)
 		self.facing_angle = get_facing_angle_for_movement()
 		set_sprite_from_action()
 			
