@@ -1,0 +1,1 @@
+Shoutout Hyunjoon Park for CardFramework, you're a real G. Licensed under MIT license, see addons/card-framework/LICENSE.md for details
