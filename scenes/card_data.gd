@@ -1,4 +1,4 @@
-class_name Card extends Node
+class_name CardData extends Node
 
 @export var card_id: int = -1 #should be unique per card?
 @export var card_name: String = "Undefined" #eventually this should be stringIDs for i18n

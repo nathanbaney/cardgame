@@ -17,12 +17,8 @@ static var hovering_card_count: int = 0
 ## If true, the front face is visible; otherwise, the back face is visible.
 @export var show_front: bool = true:
 	set(value):
-		if value:
-			front_face_texture.visible = true
-			back_face_texture.visible = false
-		else:
-			front_face_texture.visible = false
-			back_face_texture.visible = true
+		front_face_texture.visible = value
+		back_face_texture.visible = not value
 
 
 var card_info: Dictionary

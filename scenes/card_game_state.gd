@@ -16,7 +16,7 @@ class_name CardGameState extends Node
 enum GAME_STEP {SETUP, MULLIGAN, BEFORE_TURN, UPKEEP, MAIN_PHASE, PLAYED_CARD, BOARD_PHASE, END_OF_TURN}
 
 signal dealt_damage(player_index: int, damage: int)
-signal drew_card(player_index: int, card: Card)
+signal drew_card(player_index: int, card: CardData)
 
 @export var player_list: Array[CardPlayer]
 var initial_cards_dealt: int = 7
@@ -37,10 +37,10 @@ var number_of_mulligans: int = 0
 var debug_state_format_1: String = "TURN %d CURRENT_PLAYER %d GAME_STEP %s"
 var debug_state_format_2: String = "PLAYER1 CARD_COUNT %d HP %d PLAYER2 CARD_COUNT %d HP %d"
 
-func _ready() -> void:
-	drew_card.connect(%UICardGameRenderer._on_drew_card)
-	current_player = player_list.get(0)
-	init_game()
+#func _ready() -> void:
+	#drew_card.connect(%UICardGameRenderer._on_drew_card)
+	#current_player = player_list.get(0)
+	#init_game()
 
 # deal 7 cards to each player
 func init_game() -> void:
@@ -57,7 +57,6 @@ func init_game() -> void:
 func mulligan():
 	print_debug_state()
 	#await await_mulligan_input()
-	await %UICardGameRenderer.get_node("AdvanceStateButton").pressed
 	var did_player_mull: bool = true # await_mulligan_input()
 	if did_player_mull:
 		number_of_mulligans += 1
@@ -74,15 +73,14 @@ func before_turn():
 
 func upkeep():
 	print_debug_state()
-	var drawn_cards: Array[Card] = current_player.deck.deal_cards(current_player.draw_per_turn)
-	current_player.change_health(drawn_cards.size() - current_player.draw_per_turn)
+	#var drawn_cards: Array[CardData] = current_player.deck.deal_cards(current_player.draw_per_turn)
+	#current_player.change_health(drawn_cards.size() - current_player.draw_per_turn)
 	# handle card-drawn effects?
 	advance_game_step()
 
 func main_phase():
 	print_debug_state()
 	# await await_main_phase_input()
-	await %UICardGameRenderer.get_node("AdvanceStateButton").pressed
 	advance_game_step()
 
 func played_card():
@@ -93,25 +91,25 @@ func played_card():
 func board_phase():
 	#resolve board left-to-right for current player
 	print_debug_state()
-	for card in current_player.play_zone.cards:
+	#for card in current_player.play_zone.cards:
 		#execute card's effect
-		continue
+	#	continue
 	advance_game_step()
 
 func end_of_turn():
 	print_debug_state()
-	if current_player.hand.cards.size() > max_hand_size:
-		await_discard_input()
+	#if current_player.hand.cards.size() > max_hand_size:
+	#	await_discard_input()
 	#resolve all cards with end-of-turn effects left-to-right
 	advance_game_step()
 
 # sets current_game_step to next step in the turn (or the next player if the turn is over),
 # checks if any player lost (has zero health), sets their "is_loser" flag to true if so
 func advance_game_step():
-	for player in player_list:
-		if player.life_total <= 0:
-			player.is_loser = true
-			number_of_losers += 1
+	#for player in player_list:
+	#	if player.life_total <= 0:
+	#		player.is_loser = true
+	#		number_of_losers += 1
 			
 	
 	if number_of_losers >= 2:
@@ -160,17 +158,18 @@ func await_discard_input() -> void:
 	await_test_input()
 
 func await_test_input():
-	await %UICardGameRenderer.get_node("AdvanceStateButton").pressed
+	await %UICardGameLayer.get_node("AdvanceStateButton").pressed
 
 func reshuffle_everything():
 	for player in player_list:
-		player.deck.cards.append_array(player.hand.cards)
-		player.deck.cards.append_array(player.discard_pile.cards)
-		player.deck.cards.append_array(player.play_zone.cards)
-		player.deck.cards.shuffle()
-		player.hand.cards.clear()
-		player.discard_pile.cards.clear()
-		player.play_zone.cards.clear()
+		#player.deck.cards.append_array(player.hand.cards)
+		#player.deck.cards.append_array(player.discard_pile.cards)
+		#player.deck.cards.append_array(player.play_zone.cards)
+		#player.deck.cards.shuffle()
+		#player.hand.cards.clear()
+		#player.discard_pile.cards.clear()
+		#player.play_zone.cards.clear()
+		pass
 
 func execute_game_step_func():
 	match current_game_step:
@@ -197,15 +196,17 @@ func deal_damage(player_index: int, damage: int):
 
 func draw_cards(player_index: int, number_of_cards: int):
 	for ii in range(number_of_cards):
-		if not player_list.get(player_index).deck.cards.is_empty():
-			var drawn_card: Card = player_list.get(player_index).deck.deal_card()
-			player_list.get(player_index).hand.cards.append(drawn_card)
-			drew_card.emit(player_index, drawn_card)
-		else:
-			deal_damage(player_index, 1)
+		#if not player_list.get(player_index).deck.cards.is_empty():
+		#	var drawn_card: CardData = player_list.get(player_index).deck.deal_card()
+		#	player_list.get(player_index).hand.cards.append(drawn_card)
+		#	drew_card.emit(player_index, drawn_card)
+		#else:
+		#	deal_damage(player_index, 1)
+		pass
 	# TODO handle any on-draw effects
 
 func print_debug_state():
 	if debug:
-		print(debug_state_format_1 % [turn_count, current_player_index, current_game_step])
-		print(debug_state_format_2 % [player_list.get(0).hand.cards.size(), player_list.get(0).life_total, player_list.get(1).hand.cards.size(), player_list.get(1).life_total])
+		pass
+		#print(debug_state_format_1 % [turn_count, current_player_index, current_game_step])
+		#print(debug_state_format_2 % [player_list.get(0).hand.cards.size(), player_list.get(0).life_total, player_list.get(1).hand.cards.size(), player_list.get(1).life_total])

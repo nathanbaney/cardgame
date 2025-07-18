@@ -1,14 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://ca8xb1y3t56oq"]
+[gd_scene load_steps=13 format=3 uid="uid://ca8xb1y3t56oq"]
 
 [ext_resource type="Texture2D" uid="uid://n10k0fvcjf5i" path="res://textures/test_cobble.png" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bljdhvniu6egk" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://e16yhenlgyiv" path="res://scenes/rotation_coordinator.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://h3k4p0ug3smy" path="res://scenes/test_npc.tscn" id="3_sugp2"]
-[ext_resource type="Script" uid="uid://cing1f23rd8f" path="res://scenes/ui_card_game_layer.gd" id="5_85g3d"]
-[ext_resource type="Script" uid="uid://clqgq1n7v0ar" path="res://addons/card-framework/card_manager.gd" id="6_tipki"]
-[ext_resource type="PackedScene" uid="uid://diap3gdfbqvjv" path="res://example1/my_card_factory.tscn" id="7_85g3d"]
-[ext_resource type="Script" uid="uid://6ams8uvg43gu" path="res://addons/card-framework/pile.gd" id="8_choun"]
-[ext_resource type="Script" uid="uid://dj46jo3lfbclo" path="res://addons/card-framework/hand.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://d3o1mu7f8u1xy" path="res://scenes/card_game_state.gd" id="5_tbgi4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
 albedo_texture = ExtResource("1_jyhfs")
@@ -33,7 +29,13 @@ sky = SubResource("Sky_85g3d")
 ambient_light_color = Color(0.822481, 0.763441, 0.566739, 1)
 ambient_light_energy = 5.28
 
-[node name="Main" type="Node3D"]
+[sub_resource type="GDScript" id="GDScript_tbgi4"]
+script/source = "class_name UICardGameLayer extends Control
+
+#var card_scene: PackedScene = preload(\"res://scenes/ui_card.tscn\")
+"
+
+[node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0079608, -0.492437, 0.00208569)
@@ -65,62 +67,22 @@ metadata/_custom_type_script = "uid://e16yhenlgyiv"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82279, 0, 0)
 
 [node name="UICardGameLayer" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_85g3d")
-
-[node name="CardManager" type="Control" parent="UICardGameLayer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_tipki")
-card_factory_scene = ExtResource("7_85g3d")
-metadata/_custom_type_script = "uid://clqgq1n7v0ar"
-
-[node name="Player1Deck" type="Control" parent="UICardGameLayer/CardManager"]
-layout_mode = 1
-anchor_left = 0.9
-anchor_top = 0.9
-anchor_right = 1.0
-anchor_bottom = 0.9
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-script = ExtResource("8_choun")
-metadata/_custom_type_script = "uid://6ams8uvg43gu"
-
-[node name="Label" type="Label" parent="UICardGameLayer/CardManager/Player1Deck"]
-layout_mode = 0
+anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 23.0
-text = "P1Deck"
+offset_bottom = 40.0
+script = SubResource("GDScript_tbgi4")
 
-[node name="Player1Hand" type="Control" parent="UICardGameLayer/CardManager"]
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.9
-anchor_right = 0.5
-anchor_bottom = 0.9
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("9_85g3d")
-metadata/_custom_type_script = "uid://dj46jo3lfbclo"
+[node name="CardGameState" type="Node" parent="UICardGameLayer" node_paths=PackedStringArray("player_list")]
+script = ExtResource("5_tbgi4")
+player_list = [NodePath(""), NodePath("")]
+metadata/_custom_type_script = "uid://d3o1mu7f8u1xy"
 
-[node name="Label" type="Label" parent="UICardGameLayer/CardManager/Player1Hand"]
+[node name="AdvanceStateButton" type="Button" parent="UICardGameLayer"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "P1Hand"
+offset_right = 311.0
+offset_bottom = 105.0
+text = "Advance state"
 
 [connection signal="camera_rotate" from="Player" to="RotationCoordinator" method="_on_player_camera_rotate"]

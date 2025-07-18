@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck8xj8x5w7nrn"]
-
-[ext_resource type="Script" uid="uid://cp8dv8ohny31m" path="res://scenes/card_pile.gd" id="1_l72ie"]
-
-[node name="EmptyDeck" type="Node"]
-script = ExtResource("1_l72ie")
-metadata/_custom_type_script = "uid://cp8dv8ohny31m"
