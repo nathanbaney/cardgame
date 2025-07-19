@@ -84,7 +84,7 @@ script = ExtResource("6_tipki")
 card_factory_scene = ExtResource("7_85g3d")
 metadata/_custom_type_script = "uid://clqgq1n7v0ar"
 
-[node name="Player1Deck" type="Control" parent="UICardGameLayer/CardManager"]
+[node name="PlayerDeck" type="Control" parent="UICardGameLayer/CardManager"]
 layout_mode = 1
 anchor_left = 0.9
 anchor_top = 0.9
@@ -97,13 +97,13 @@ grow_vertical = 0
 script = ExtResource("8_choun")
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
-[node name="Label" type="Label" parent="UICardGameLayer/CardManager/Player1Deck"]
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/PlayerDeck"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "P1Deck"
 
-[node name="Player1Hand" type="Control" parent="UICardGameLayer/CardManager"]
+[node name="PlayerHand" type="Control" parent="UICardGameLayer/CardManager"]
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.9
@@ -117,10 +117,124 @@ grow_vertical = 0
 script = ExtResource("9_85g3d")
 metadata/_custom_type_script = "uid://dj46jo3lfbclo"
 
-[node name="Label" type="Label" parent="UICardGameLayer/CardManager/Player1Hand"]
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/PlayerHand"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "P1Hand"
+
+[node name="PlayerDiscard" type="Control" parent="UICardGameLayer/CardManager"]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.9
+anchor_right = 0.1
+anchor_bottom = 0.9
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("8_choun")
+metadata/_custom_type_script = "uid://6ams8uvg43gu"
+
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/PlayerDiscard"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Player Discard"
+
+[node name="PlayerField" type="Control" parent="UICardGameLayer/CardManager"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_85g3d")
+metadata/_custom_type_script = "uid://dj46jo3lfbclo"
+
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/PlayerField"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Player Field"
+
+[node name="OpponentDeck" type="Control" parent="UICardGameLayer/CardManager"]
+layout_mode = 1
+anchor_left = 0.9
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.1
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("8_choun")
+metadata/_custom_type_script = "uid://6ams8uvg43gu"
+
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/OpponentDeck"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Opponent Deck"
+
+[node name="OpponentHand" type="Control" parent="UICardGameLayer/CardManager"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("9_85g3d")
+metadata/_custom_type_script = "uid://dj46jo3lfbclo"
+
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/OpponentHand"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Opponent Hand"
+
+[node name="OpponentDiscard" type="Control" parent="UICardGameLayer/CardManager"]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.1
+anchor_bottom = 0.1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_choun")
+metadata/_custom_type_script = "uid://6ams8uvg43gu"
+
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/OpponentDiscard"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Opponent Discard"
+
+[node name="OpponentField" type="Control" parent="UICardGameLayer/CardManager"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_85g3d")
+metadata/_custom_type_script = "uid://dj46jo3lfbclo"
+
+[node name="Label" type="Label" parent="UICardGameLayer/CardManager/OpponentField"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Opponent Field"
 
 [connection signal="camera_rotate" from="Player" to="RotationCoordinator" method="_on_player_camera_rotate"]

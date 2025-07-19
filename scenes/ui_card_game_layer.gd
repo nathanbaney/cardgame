@@ -2,17 +2,19 @@ extends Control
 
 @onready var card_manager = $CardManager
 @onready var card_factory = $CardManager/MyCardFactory
-@onready var hand = $CardManager/Player1Hand
-@onready var deck = $CardManager/Player1Deck
+@onready var player_hand = $CardManager/PlayerHand
+@onready var player_deck = $CardManager/PlayerDeck
+@onready var opponent_hand = $CardManager/OpponentHand
+@onready var opponent_deck = $CardManager/OpponentDeck
 
 func _ready():
 	_reset_deck()
 
 func _reset_deck():
 	var list = _get_randomized_card_list()
-	deck.clear_cards()
+	player_deck.clear_cards()
 	for card in list:
-		card_factory.create_card(card, deck)
+		card_factory.create_card(card, player_deck)
 
 func _get_randomized_card_list() -> Array:
 	var suits = ["club", "spade", "diamond", "heart"]
