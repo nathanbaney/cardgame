@@ -8,6 +8,6 @@
 script = ExtResource("1_3l4ln")
 default_card_scene = ExtResource("2_bacqf")
 card_asset_dir = "res://example1/assets/images/cards"
-card_info_dir = "res://example1/card_info"
+card_info_dir = "res://card_data"
 back_image = ExtResource("3_7eulg")
 metadata/_custom_type_script = "uid://cyeiblce0efth"

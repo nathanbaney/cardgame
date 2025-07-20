@@ -1,0 +1,60 @@
+{
+	"cards": [
+		{
+			"name": "Fireball",
+			"color": "RED",
+			"cost": 1,
+			"effect_text": "Deal 3 damage to target",
+			"flavor_text": "Primordial flame distilled into its most basic form.",
+			"effect": "Damage(3,target(F,Z))"
+		},
+		{
+			"name": "Golem",
+			"color": "BROWN",
+			"cost": 1,
+			"effect_text": "Summon a 2/2 Golem",
+			"flavor_text": "As dependable as the earth it was made from.",
+			"effect": "Summon(2,2,self,_,_,_)"
+		},
+		{
+			"name": "Coldfront",
+			"color": "BLUE",
+			"cost": 1,
+			"effect_text": "Freeze ALL creatures for 1 turn",
+			"flavor_text": ".",
+			"effect": "Freeze(1,.)"
+		},
+		{
+			"name": "Poison Dart",
+			"color": "GREEN",
+			"cost": 1,
+			"effect_text": "Add 2 poison to target.",
+			"flavor_text": ".",
+			"effect": "Poison(2,target(F,Z))"
+		},
+		{
+			"name": "Counterspell",
+			"color": "PURPLE",
+			"cost": 1,
+			"effect_text": "Counter opponent's next played card.",
+			"flavor_text": ".",
+			"effect": "Trap(trigger_cast(opponent, _), Counter())"
+		},
+		{
+			"name": "Sparrow",
+			"color": "WHITE",
+			"cost": 1,
+			"effect_text": "Summon a 1/1 Flying Bird",
+			"flavor_text": ".",
+			"effect": "Summon(1,1,self,_,Flying(),_)"
+		},
+		{
+			"name": "Lightning Rod",
+			"color": "YELLOW",
+			"cost": 1,
+			"effect_text": "Summon a 0/1 Construct. It gives 1 Mana each turn.",
+			"flavor_text": ".",
+			"effect": "Summon(1,1,self,_,time(1, Mana(1)),_)"
+		},
+	]
+}
