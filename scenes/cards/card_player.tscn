@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgou1lnwijyqn"]
 
-[ext_resource type="Script" uid="uid://bbwxqecwpdqwn" path="res://scenes/card_player.gd" id="1_jlowo"]
+[ext_resource type="Script" uid="uid://bbwxqecwpdqwn" path="res://scenes/cards/card_player.gd" id="1_jlowo"]
 
 [node name="CardPlayer" type="Node"]
 script = ExtResource("1_jlowo")

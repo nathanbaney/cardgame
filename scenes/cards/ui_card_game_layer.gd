@@ -1,11 +1,15 @@
 extends Control
 
 @onready var card_manager = $CardManager
-@onready var card_factory = $CardManager/MyCardFactory
+@onready var card_factory = $CardManager/CustomJsonCardFactory
 @onready var player_hand = $CardManager/PlayerHand
 @onready var player_deck = $CardManager/PlayerDeck
+@onready var player_field = $CardManager/PlayerField
+@onready var player_discard = $CardManager/PlayerDiscard
 @onready var opponent_hand = $CardManager/OpponentHand
 @onready var opponent_deck = $CardManager/OpponentDeck
+@onready var opponent_field = $CardManager/OpponentField
+@onready var opponent_discard = $CardManager/OpponentDiscard
 
 func _ready():
 	_reset_deck()
@@ -28,3 +32,7 @@ func _get_randomized_card_list() -> Array:
 	card_list.shuffle()
 	
 	return card_list
+
+
+func _on_button_pressed() -> void:
+	player_hand.move_cards(player_deck.get_top_cards(7))
