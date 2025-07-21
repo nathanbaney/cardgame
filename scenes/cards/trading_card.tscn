@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkfdyidbgrnsc"]
+
+[ext_resource type="Script" uid="uid://bx6x8w8uqv7xv" path="res://scenes/cards/trading_card.gd" id="1_rh01e"]
+[ext_resource type="Texture2D" uid="uid://bgopux6ot5c5e" path="res://textures/card.png" id="2_4x0rh"]
+
+[node name="TradingCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rh01e")
+metadata/_custom_type_script = "uid://dtpomjc0u41g"
+
+[node name="FrontFace" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="FrontFace"]
+layout_mode = 1
+offset_right = 150.0
+offset_bottom = 210.0
+texture = ExtResource("2_4x0rh")
+
+[node name="NameLabel" type="RichTextLabel" parent="FrontFace"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 8.0
+offset_right = 153.0
+offset_bottom = 39.0
+scale = Vector2(0.8, 0.8)
+text = "Default Name"
+
+[node name="EffectLabel" type="RichTextLabel" parent="FrontFace"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 127.0
+offset_right = 165.0
+offset_bottom = 222.0
+scale = Vector2(0.8, 0.8)
+text = "Default Effect
+Default Effect
+Default Effect
+Default Effect"
+
+[node name="CostLabel" type="RichTextLabel" parent="FrontFace"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 6.0
+offset_right = 31.0
+offset_bottom = 29.0
+text = "3"
+
+[node name="TypeLabel" type="RichTextLabel" parent="FrontFace"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 111.0
+offset_right = 187.0
+offset_bottom = 134.0
+scale = Vector2(0.7, 0.7)
+text = "Default Type"
+
+[node name="BackFace" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="BackFace"]
+layout_mode = 1
+offset_right = 150.0
+offset_bottom = 210.0
