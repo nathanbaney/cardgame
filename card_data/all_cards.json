@@ -1,5 +1,5 @@
 {
-	"cards": [
+	"1": 
 		{
 			"name": "Fireball",
 			"color": "RED",
@@ -8,6 +8,7 @@
 			"flavor_text": "Primordial flame distilled into its most basic form.",
 			"effect": "Damage(3,target(F,Z))"
 		},
+	"2":
 		{
 			"name": "Golem",
 			"color": "BROWN",
@@ -16,6 +17,7 @@
 			"flavor_text": "As dependable as the earth it was made from.",
 			"effect": "Summon(2,2,self,_,_,_)"
 		},
+	"3":
 		{
 			"name": "Coldfront",
 			"color": "BLUE",
@@ -24,6 +26,7 @@
 			"flavor_text": ".",
 			"effect": "Freeze(1,.)"
 		},
+	"4":
 		{
 			"name": "Poison Dart",
 			"color": "GREEN",
@@ -32,6 +35,7 @@
 			"flavor_text": ".",
 			"effect": "Poison(2,target(F,Z))"
 		},
+	"5":
 		{
 			"name": "Counterspell",
 			"color": "PURPLE",
@@ -40,6 +44,7 @@
 			"flavor_text": ".",
 			"effect": "Trap(trigger_cast(opponent, _), Counter())"
 		},
+	"6":
 		{
 			"name": "Sparrow",
 			"color": "WHITE",
@@ -48,6 +53,7 @@
 			"flavor_text": ".",
 			"effect": "Summon(1,1,self,_,Flying(),_)"
 		},
+	"7":
 		{
 			"name": "Lightning Rod",
 			"color": "YELLOW",
@@ -55,6 +61,5 @@
 			"effect_text": "Summon a 0/1 Construct. It gives 1 Mana each turn.",
 			"flavor_text": ".",
 			"effect": "Summon(1,1,self,_,time(1, Mana(1)),_)"
-		},
-	]
+		}
 }

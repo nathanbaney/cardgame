@@ -21,13 +21,10 @@ func _reset_deck():
 		card_factory.create_card(card, player_deck)
 
 func _get_randomized_card_list() -> Array:
-	var suits = ["club", "spade", "diamond", "heart"]
-	var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 	
 	var card_list = []
-	for suit in suits:
-		for value in values:
-			card_list.append("%s_%s" % [suit, value])
+	for ii in range(1, 8):
+		card_list.append("%s" % ii)
 	
 	card_list.shuffle()
 	
