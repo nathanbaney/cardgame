@@ -49,6 +49,7 @@ text = "Default Effect
 Default Effect
 Default Effect
 Default Effect"
+autowrap_mode = 3
 
 [node name="CostLabel" type="Label" parent="FrontFace"]
 layout_mode = 0
