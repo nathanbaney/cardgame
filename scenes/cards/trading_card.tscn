@@ -22,14 +22,6 @@ offset_right = 150.0
 offset_bottom = 210.0
 texture = ExtResource("2_4x0rh")
 
-[node name="ColorOverlay" type="ColorRect" parent="FrontFace"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 147.0
-offset_bottom = 207.0
-color = Color(1, 1, 1, 0.266667)
-
 [node name="NameLabel" type="RichTextLabel" parent="FrontFace"]
 layout_mode = 0
 offset_left = 34.0
@@ -53,11 +45,12 @@ Default Effect"
 
 [node name="CostLabel" type="RichTextLabel" parent="FrontFace"]
 layout_mode = 0
-offset_left = 19.0
+offset_left = 18.0
 offset_top = 6.0
 offset_right = 31.0
-offset_bottom = 29.0
+offset_bottom = 31.0
 text = "3"
+scroll_active = false
 
 [node name="TypeLabel" type="RichTextLabel" parent="FrontFace"]
 layout_mode = 0

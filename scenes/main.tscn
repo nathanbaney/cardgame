@@ -95,6 +95,7 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("8_choun")
+card_face_up = false
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="Label" type="Label" parent="UICardGameLayer/CardManager/PlayerDeck"]
@@ -174,6 +175,7 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 script = ExtResource("8_choun")
+card_face_up = false
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="Label" type="Label" parent="UICardGameLayer/CardManager/OpponentDeck"]
@@ -193,6 +195,7 @@ offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
 script = ExtResource("9_85g3d")
+card_face_up = false
 metadata/_custom_type_script = "uid://dj46jo3lfbclo"
 
 [node name="Label" type="Label" parent="UICardGameLayer/CardManager/OpponentHand"]

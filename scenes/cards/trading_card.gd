@@ -1,7 +1,6 @@
 class_name TradingCard extends Card
 
 @onready var card_frame: TextureRect = $FrontFace/TextureRect
-@onready var card_color_overlay: ColorRect = $FrontFace/ColorOverlay
 @onready var card_art: TextureRect = $FrontFace/CardArt
 @onready var name_label: RichTextLabel = $FrontFace/NameLabel
 @onready var effect_label: RichTextLabel = $FrontFace/EffectLabel
@@ -49,20 +48,18 @@ func set_front_face_from_info(card_info: Dictionary):
 func set_front_face_color(color: String):
 	match color:
 		COLOR_RED_NAME:
-			card_color_overlay.color = Color.RED
+			card_frame.modulate = Color.RED
 		COLOR_BLUE_NAME:
-			card_color_overlay.color = Color.BLUE
+			card_frame.modulate = Color.BLUE
 		COLOR_YELLOW_NAME:
-			card_color_overlay.color = Color.YELLOW
+			card_frame.modulate = Color.YELLOW
 		COLOR_BROWN_NAME:
-			card_color_overlay.color = Color.BROWN
+			card_frame.modulate = Color.CHOCOLATE
 		COLOR_GREEN_NAME:
-			card_color_overlay.color = Color.GREEN
+			card_frame.modulate = Color.GREEN
 		COLOR_PURPLE_NAME:
-			card_color_overlay.color = Color.PURPLE
+			card_frame.modulate = Color.PURPLE
 		COLOR_WHITE_NAME:
-			card_color_overlay.color = Color.ANTIQUE_WHITE
+			card_frame.modulate = Color.ANTIQUE_WHITE
 		_:
-			card_color_overlay.color = Color.DARK_GRAY
-	
-	card_color_overlay.color
+			card_frame.modulate = Color.DARK_GRAY
