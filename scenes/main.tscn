@@ -96,6 +96,7 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("8_choun")
 card_face_up = false
+allow_card_movement = false
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="Label" type="Label" parent="UICardGameLayer/CardManager/PlayerDeck"]

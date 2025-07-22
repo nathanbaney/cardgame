@@ -2,10 +2,10 @@ class_name TradingCard extends Card
 
 @onready var card_frame: TextureRect = $FrontFace/TextureRect
 @onready var card_art: TextureRect = $FrontFace/CardArt
-@onready var name_label: RichTextLabel = $FrontFace/NameLabel
-@onready var effect_label: RichTextLabel = $FrontFace/EffectLabel
-@onready var cost_label: RichTextLabel = $FrontFace/CostLabel
-@onready var type_label: RichTextLabel = $FrontFace/TypeLabel
+@onready var name_label: Label = $FrontFace/NameLabel
+@onready var effect_label: Label = $FrontFace/EffectLabel
+@onready var cost_label: Label = $FrontFace/CostLabel
+@onready var type_label: Label = $FrontFace/TypeLabel
 
 const COLOR_RED_NAME: String = "RED"
 const COLOR_BLUE_NAME: String = "BLUE"
@@ -33,7 +33,7 @@ func set_faces(front_face: Texture2D, back_face: Texture2D) -> void:
 func set_front_face_from_info(card_info: Dictionary):
 	var name_string: String = card_info.get("name")
 	var effect_string: String = card_info.get("effect_text")
-	var cost_string: String = String.num(card_info.get("cost"))
+	var cost_string: String = String.num(card_info.get("cost"), 0)
 	#TODO var type_string: String = card_info.get("type")
 	var color_string: String = card_info.get("color")
 	

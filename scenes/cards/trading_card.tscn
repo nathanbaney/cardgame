@@ -22,7 +22,14 @@ offset_right = 150.0
 offset_bottom = 210.0
 texture = ExtResource("2_4x0rh")
 
-[node name="NameLabel" type="RichTextLabel" parent="FrontFace"]
+[node name="CardArt" type="TextureRect" parent="FrontFace"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 32.0
+offset_right = 135.0
+offset_bottom = 106.0
+
+[node name="NameLabel" type="Label" parent="FrontFace"]
 layout_mode = 0
 offset_left = 34.0
 offset_top = 8.0
@@ -31,28 +38,27 @@ offset_bottom = 39.0
 scale = Vector2(0.8, 0.8)
 text = "Default Name"
 
-[node name="EffectLabel" type="RichTextLabel" parent="FrontFace"]
+[node name="EffectLabel" type="Label" parent="FrontFace"]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 127.0
 offset_right = 165.0
-offset_bottom = 222.0
+offset_bottom = 228.0
 scale = Vector2(0.8, 0.8)
 text = "Default Effect
 Default Effect
 Default Effect
 Default Effect"
 
-[node name="CostLabel" type="RichTextLabel" parent="FrontFace"]
+[node name="CostLabel" type="Label" parent="FrontFace"]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 6.0
 offset_right = 31.0
 offset_bottom = 31.0
 text = "3"
-scroll_active = false
 
-[node name="TypeLabel" type="RichTextLabel" parent="FrontFace"]
+[node name="TypeLabel" type="Label" parent="FrontFace"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 111.0
@@ -60,13 +66,6 @@ offset_right = 187.0
 offset_bottom = 134.0
 scale = Vector2(0.7, 0.7)
 text = "Default Type"
-
-[node name="CardArt" type="TextureRect" parent="FrontFace"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 32.0
-offset_right = 135.0
-offset_bottom = 106.0
 
 [node name="BackFace" type="Control" parent="."]
 layout_mode = 3

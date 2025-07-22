@@ -66,11 +66,13 @@ func _on_move_done() -> void:
 
 
 func _on_mouse_enter() -> void:
+	print("MOUSE ENTERED CARD")
 	if not is_moving_to_destination and can_be_interacted_with:
 		start_hovering()
 
 
 func _on_mouse_exit() -> void:
+	print("MOUSE EXITED CARD")
 	if is_pressed:
 		return
 	end_hovering(true)
