@@ -34,13 +34,13 @@ func set_front_face_from_info(card_info: Dictionary):
 	var name_string: String = card_info.get("name")
 	var effect_string: String = card_info.get("effect_text")
 	var cost_string: String = String.num(card_info.get("cost"), 0)
-	#TODO var type_string: String = card_info.get("type")
+	var type_string: String = card_info.get("type")
 	var color_string: String = card_info.get("color")
 	
 	name_label.text = name_string
 	effect_label.text = effect_string
 	cost_label.text = cost_string
-	#TODO type_label.text = type_string
+	type_label.text = type_string
 	
 	set_front_face_color(color_string)
 
